@@ -1,0 +1,10 @@
+Code/CalibrationCode/*
+!Code/CalibrationCode/*.ino
+!Code/CalibrationCode/*.txt
+!Code/CalibrationCode/*.cpp
+!Code/CalibrationCode/*.h
+Code/MPUTester/*
+!Code/MPUTester/*.ino
+!Code/MPUTester/*.txt
+!Code/MPUTester/*.cpp
+!Code/MPUTester/*.h
