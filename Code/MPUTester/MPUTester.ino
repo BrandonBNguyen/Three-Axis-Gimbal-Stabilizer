@@ -19,32 +19,27 @@ struct Reading {
     }
 };
 
-struct CalibratedMPU {
+struct CalibratedMPU : Mpu9250 {
 
-    Mpu9250* imu_ptr;
+    using Mpu9250::Mpu9250;
 
-    CalibratedMPU(Mpu9250* imu) {
-        imu_ptr = imu;
-    }
-
-    Reading get_accel() {
+    Reading get_readings() {
         // Adjust x, y, and z acceleration readings based on offsets determined by calibration.
         // This is aligned such that the +x axis labeled on the accelerometer corresponds to the
         // 1-body axis, the -y axis corresponds to the 2-body axis, and the -z axis corresponds
         // to the 3-body axis.
-        auto a_x =  imu_ptr->accel_y_mps2() + x_offset;
-        auto a_y = -imu_ptr->accel_x_mps2() + y_offset;
-        auto a_z = -imu_ptr->accel_z_mps2() + z_offset;
-        auto pitch_angle = 180 * atan2(a_x, sqrt(pow(a_y,2) + pow(a_z,2))) / M_PI;
-        auto roll_angle  = 180 * atan2(-a_y, a_z) / M_PI;
+        auto a_x =  accel_y_mps2() + x_offset;
+        auto a_y = -accel_x_mps2() + y_offset;
+        auto a_z = -accel_z_mps2() + z_offset;
+        auto pitch_angle = 180 * atan2(a_x, sqrt(pow(a_y, 2) + pow(a_z, 2))) / M_PI;
+        auto roll_angle = 180 * atan2(-a_y, a_z) / M_PI;
         return Reading{ a_x, a_y, a_z, pitch_angle, roll_angle };
     }
 
 };
 
 /* An Mpu9250 object with the MPU-9250 sensor on I2C bus 0 with address 0x68 */
-Mpu9250 imu(&Wire, 0x68);
-CalibratedMPU calibrated_imu{ &imu };
+CalibratedMPU imu(&Wire, 0x68);
 
 void setup() {
     /* Serial to display data */
@@ -60,8 +55,9 @@ void setup() {
 }
 
 void loop() {
+    while (!Serial) {}
     if (imu.Read()) {
-        auto reading = calibrated_imu.get_accel();
+        auto reading = imu.get_readings();
 //        Serial.print(reading.a_x, 6);
 //        Serial.print(" ");
 //        Serial.print(reading.a_y, 6);
