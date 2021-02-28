@@ -1,3 +1,20 @@
-const auto x_offset = -1.62163782;
-const auto y_offset =  1.07151603;
-const auto z_offset =  5.31442928;
+const auto a_x_offset = -1.62163782;
+const auto a_y_offset =  1.07151603;
+const auto a_z_offset =  5.31442928;
+
+Z-Axis Up Y-Axis Left:
+m_y_average: 17.59866905	m_z_average: 39.96048355
+
+Z-Axis Down Y-Axis Right:
+m_y_average: 4.18439960		m_z_average: -21.81917762
+
+m_z_offset = -9.070652965
+m_y_offset = -10.891534325
+
+X-Axis Right:
+m_x_offset: 10.59886932
+
+X-Axis Left:
+m_x_offset: -23.11783599
+
+m_x_offset:

@@ -6,9 +6,12 @@
 #include "mpu9250.h"
 
 struct Reading {
-    float x;
-    float y;
-    float z;
+    float a_x;
+    float a_y;
+    float a_z;
+    float m_x;
+    float m_y;
+    float m_z;
 };
 
 struct CalibratedMPU {
@@ -22,10 +25,13 @@ struct CalibratedMPU {
     Reading get_accel() {
         // Adjust x, y, and z acceleration readings based on offsets determined
         // by calibration.
-        auto x =  imu_ptr->accel_y_mps2();
-        auto y = -imu_ptr->accel_x_mps2();
-        auto z =  imu_ptr->accel_z_mps2();
-        return Reading{ x, y, z };
+        auto a_x =  imu_ptr->accel_y_mps2();
+        auto a_y = -imu_ptr->accel_x_mps2();
+        auto a_z =  imu_ptr->accel_z_mps2();
+        auto m_x =  imu_ptr->mag_y_ut();
+        auto m_y = -imu_ptr->mag_x_ut();
+        auto m_z =  imu_ptr->mag_z_ut();
+        return Reading{ a_x, a_y, a_z, m_x, m_y, m_z };
     }
 
 };
@@ -48,38 +54,60 @@ void setup() {
 }
 
 void loop() {
-    float sum_x = 0;
-    float sum_y = 0;
-    float sum_z = 0;
+    float sum_a_x = 0;
+    float sum_a_y = 0;
+    float sum_a_z = 0;
+    float sum_m_x = 0;
+    float sum_m_y = 0;
+    float sum_m_z = 0;
     for (int i = 0; i < 1000; i++) {
         if (imu.Read()) {
             auto reading = calibrated_imu.get_accel();
             Serial.print("Trial ");
             Serial.print(i);
             Serial.print(":\t");
-            Serial.print(reading.x, 6);
+            Serial.print(reading.a_x, 6);
             Serial.print("\t");
-            Serial.print(reading.y, 6);
+            Serial.print(reading.a_y, 6);
             Serial.print("\t");
-            Serial.println(reading.z, 6);
+            Serial.print(reading.a_z, 6);
+            Serial.print(":\t");
+            Serial.print(reading.m_x, 6);
+            Serial.print("\t");
+            Serial.print(reading.m_y, 6);
+            Serial.print("\t");
+            Serial.println(reading.m_z, 6);
 
-            sum_x += reading.x;
-            sum_y += reading.y;
-            sum_z += reading.z;
+            sum_a_x += reading.a_x;
+            sum_a_y += reading.a_y;
+            sum_a_z += reading.a_z;
+            sum_m_x += reading.m_x;
+            sum_m_y += reading.m_y;
+            sum_m_z += reading.m_z;
         }
         else i--;
     }
 
-    auto x_offset = sum_x / 1000;
-    auto y_offset = sum_y / 1000;
-    auto z_offset = sum_z / 1000;
+    auto a_x_offset = sum_a_x / 1000;
+    auto a_y_offset = sum_a_y / 1000;
+    auto a_z_offset = sum_a_z / 1000;
+    auto m_x_offset = sum_m_x / 1000;
+    auto m_y_offset = sum_m_y / 1000;
+    auto m_z_offset = sum_m_z / 1000;
 
-    Serial.print("x_offset: ");
-    Serial.print(x_offset, 8);
-    Serial.print("\ty_offset: ");
-    Serial.print(y_offset, 8);
-    Serial.print("\tz_offset: ");
-    Serial.print(z_offset, 8);
+    Serial.print("a_x_offset: ");
+    Serial.print(a_x_offset, 8);
+    Serial.print("\ta_y_offset: ");
+    Serial.print(a_y_offset, 8);
+    Serial.print("\ta_z_offset: ");
+    Serial.println(a_z_offset, 8);
+
+    Serial.print("m_x_average: ");
+    Serial.print(m_x_offset, 8);
+    Serial.print("\tm_y_average: ");
+    Serial.print(m_y_offset, 8);
+    Serial.print("\tm_z_average: ");
+    Serial.print(m_z_offset, 8);
 
     while (1) {}
 }

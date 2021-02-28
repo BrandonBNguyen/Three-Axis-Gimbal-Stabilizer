@@ -8,3 +8,10 @@ Code/MPUTester/*
 !Code/MPUTester/*.txt
 !Code/MPUTester/*.cpp
 !Code/MPUTester/*.h
+Code/MagneticCalibrationCode/MagneticCalibrationCode.sln
+Code/MagneticCalibrationCode/MagneticCalibrationCode/*
+!Code/MagneticCalibrationCode/MagneticCalibrationCode/*.ino
+!Code/MagneticCalibrationCode/MagneticCalibrationCode/*.cpp
+!Code/MagneticCalibrationCode/MagneticCalibrationCode/*.h
+!Code/MagneticCalibrationCode/MagneticCalibrationCode/*.txt
+Code/MagneticCalibrationCode/.vs/
