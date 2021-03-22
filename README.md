@@ -36,3 +36,7 @@ The [HiLetgo MPU9250/6500](https://www.amazon.com/gp/product/B01I1J0Z7Y/ref=ppx_
 ### Microcontroller Selection
 
 An Arduino Nano was used as the microcontroller for this project as it has i2c capabilities for communicating with the accelerometer and requisite PWM pins for controlling the servo motors.
+
+## CAD Design
+
+
