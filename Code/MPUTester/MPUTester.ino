@@ -1,5 +1,6 @@
 #include "mpu9250.h"
 #include <math.h>
+#include <Servo.h>
 
 // Adjust offset based on calibration.
 const auto a_x_offset = -1.62163782;
@@ -63,36 +64,36 @@ struct CalibratedMPU : Mpu9250 {
 
 };
 
-/* An Mpu9250 object with the MPU-9250 sensor on I2C bus 0 with address 0x68 */
-CalibratedMPU imu(&Wire, 0x68);
-
-void setup() {
-    /* Serial to display data */
-    Serial.begin(115200);
-    while (!Serial) {}
-    /* Start communication */
-    if (!imu.Begin()) {
-        Serial.println("IMU initialization unsuccessful");
-        while (1) {}
+struct CalibratedServo : Servo {
+    CalibratedServo(float scale, float offset) : Servo(), scale{ scale }, offset{ offset } {
+      
     }
 
+    void write(float angle) {
+      Servo::write(scale * angle + offset);
+    }
+
+    private:
+      float offset;
+      float scale;
+};
+
+/* An Mpu9250 object with the MPU-9250 sensor on I2C bus 0 with address 0x68 */
+CalibratedMPU imu{&Wire, 0x68};
+CalibratedServo rollServo{(float)(89-180)/(180), 89};
+CalibratedServo pitchServo{((float)89)/84 , 89};
+
+void setup() {
+    imu.Begin();
     imu.ConfigAccelRange(imu.AccelRange::ACCEL_RANGE_2G);
+    rollServo.attach(3);
+    pitchServo.attach(5);
 }
 
 void loop() {
-    while (!Serial) {}
     if (imu.Read()) {
         auto reading = imu.get_readings();
-//        Serial.print(reading.a_x, 6);
-//        Serial.print(" ");
-//        Serial.print(reading.a_y, 6);
-//        Serial.print(" ");
-//        Serial.println(reading.a_z, 6);
-        Serial.print(reading.pitch_angle, 6);
-        Serial.print(" ");
-        Serial.print(reading.roll_angle, 6);
-        Serial.print(" ");
-        Serial.println(reading.heading_angle, 6);
+        rollServo.write(reading.roll_angle);
+        pitchServo.write(reading.pitch_angle);
     }
-    delay(100);
 }
