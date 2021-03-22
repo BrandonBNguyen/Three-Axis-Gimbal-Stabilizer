@@ -10,3 +10,15 @@ The orientation of an aircraft can be expressed as a series of rotations require
 
 ![Axes body rotations as shown for a plane](https://www.grc.nasa.gov/www/k-12/airplane/Images/rotations.gif)
 
+To determine the roll and pitch angles to achieve the current orientation of an aircraft from an accelerometer, which measures acceleration along the body-axis angles, the following equations are used. Note that ![image](https://user-images.githubusercontent.com/19226773/112064150-c2993680-8b1f-11eb-8506-df90c7d99604.png) refers to the axis pointing out the nose of the plane, ![image](https://user-images.githubusercontent.com/19226773/112064219-d9d82400-8b1f-11eb-8d28-8dbb1afd5a1d.png) refers to the axis pointing out the right wing of the plane, and ![image](https://user-images.githubusercontent.com/19226773/112064251-e492b900-8b1f-11eb-9c56-ba1387fe8e43.png) refers to the axis pointing out the bottom of the plane.
+
+![image](https://user-images.githubusercontent.com/19226773/112064676-9631ea00-8b20-11eb-81db-6eaba842998c.png)
+
+![image](https://user-images.githubusercontent.com/19226773/112064768-bcf02080-8b20-11eb-8d58-c80a8a41bf3a.png)
+
+To determine the yaw angle, the magnetometer must be used and the deflection between magnetic north and true north, ![image](https://user-images.githubusercontent.com/19226773/112065019-2cfea680-8b21-11eb-841b-2c8bf099a2ca.png)
+, at the aircraft's location must be known.
+
+![image](https://user-images.githubusercontent.com/19226773/112065132-5fa89f00-8b21-11eb-9a88-f0e400b1ec82.png)
+
+Knowing the euler angles for an aircraft, a series of motors can be driven to rotate a platform in roll, pitch, and yaw, in order to keep the platform level relative to the ground regardless of the orientation of the aircraft.
