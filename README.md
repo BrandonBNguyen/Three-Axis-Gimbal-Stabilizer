@@ -6,6 +6,7 @@ The goal of this project was to design and develop a gimbal system capable of st
 
 ## Theory
 
-The orientation of an aircraft can be expressed in terms of a series of rotations relative to a local coordinate system (generally with the x, y, and z, axes pointing north, east, and down, respectively, at some location on the Earth). Euler angles are the angles used to express the rotations about the 
+The orientation of an aircraft can be expressed as a series of rotations required to achieve that orientation starting from an initial orientation aligned with the local coordinate system, where the nose, right wing, and underside of the plane are aligned with north, east, and down, respectively, at some location on the Earth. Euler angles are the angles used to express the sequence of rotations about the principal axes of the aircraft to achieve the desired orientation from the described starting orientation. One such sequence of rotations commonly used in aerospace is yaw, pitch, and roll, where the desired orientation is described by the angle with which to yaw, then pitch, then roll the aircraft from the starting orientation aligned with the local coordinate system.
 
 ![Axes body rotations as shown for a plane](https://www.grc.nasa.gov/www/k-12/airplane/Images/rotations.gif)
+
