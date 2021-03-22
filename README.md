@@ -22,3 +22,17 @@ To determine the yaw angle, the magnetometer must be used and the deflection bet
 ![image](https://user-images.githubusercontent.com/19226773/112065132-5fa89f00-8b21-11eb-9a88-f0e400b1ec82.png)
 
 Knowing the euler angles for an aircraft, a series of motors can be driven to rotate a platform in roll, pitch, and yaw, in order to keep the platform level relative to the ground regardless of the orientation of the aircraft.
+
+## Part Selection
+
+### Sensor Selection
+
+The [HiLetgo MPU9250/6500](https://www.amazon.com/gp/product/B01I1J0Z7Y/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) was selected because it contains both an accelerometer and magnetometer and would be sufficient to acquire enough information to calculate the roll, pitch, and yaw angles required to drive the motors to level the platform.
+
+### Actuator Selection
+
+[MG90S Micro](https://www.amazon.com/gp/product/B07F7VJQL5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) servo motors were selected to actuate the gimbals. Servo motors were selected because of the positional feedback built into them, allowing precise control over the direction of their end effectors.
+
+### Microcontroller Selection
+
+An Arduino Nano was used as the microcontroller for this project as it has i2c capabilities for communicating with the accelerometer and requisite PWM pins for controlling the servo motors.
