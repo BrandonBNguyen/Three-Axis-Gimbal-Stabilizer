@@ -29,7 +29,7 @@ Knowing the euler angles for an aircraft, a series of motors can be driven to ro
 
 The [HiLetgo MPU9250/6500](https://www.amazon.com/gp/product/B01I1J0Z7Y/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) was selected because it contains both an accelerometer and magnetometer and would be sufficient to acquire enough information to calculate the roll, pitch, and yaw angles required to drive the motors to level the platform.
 
-![HiLetgo MPU9250/6500](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/MPU9250.PNG =343x278)
+![HiLetgo MPU9250/6500](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/MPU9250.PNG?raw=true)
 
 ### Actuator Selection
 
@@ -45,4 +45,6 @@ An [Arduino Nano](https://www.amazon.com/gp/product/B0713XK923/ref=ppx_yo_dt_b_s
 
 ## CAD Design
 
+The gimbal assembly consists of a wheel in the center capable of rotating 360° to turn to a given yaw angle. The wheel is enclosed in a ring capable of rotating 180° to turn to a given pitch angle. Finally, this ring is enclosed in another ring capable of rotating 360° to turn to a given roll angle. The yaw wheel and roll ring are driven by a gear connected to a servo with a 1:2 gear ratio in order to achieve the full 360° range of motion, since the serrvos themselves can only achieve a 180° range of motion.
 
+The Arduino Nano and the MPU9250 accelerometer are connected to the base supporting the gimbal assembly. 
