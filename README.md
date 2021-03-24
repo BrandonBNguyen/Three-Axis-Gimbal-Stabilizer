@@ -29,7 +29,7 @@ Knowing the euler angles for an aircraft, a series of motors can be driven to ro
 
 The [HiLetgo MPU9250/6500](https://www.amazon.com/gp/product/B01I1J0Z7Y/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) was selected because it contains both an accelerometer and magnetometer and would be sufficient to acquire enough information to calculate the roll, pitch, and yaw angles required to drive the motors to level the platform.
 
-![HiLetgo MPU9250/6500](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/MPU9250.PNG?raw=true =343x278)
+![HiLetgo MPU9250/6500](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/MPU9250.PNG =343x278)
 
 ### Actuator Selection
 
