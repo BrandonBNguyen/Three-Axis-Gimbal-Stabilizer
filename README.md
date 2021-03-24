@@ -29,13 +29,19 @@ Knowing the euler angles for an aircraft, a series of motors can be driven to ro
 
 The [HiLetgo MPU9250/6500](https://www.amazon.com/gp/product/B01I1J0Z7Y/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) was selected because it contains both an accelerometer and magnetometer and would be sufficient to acquire enough information to calculate the roll, pitch, and yaw angles required to drive the motors to level the platform.
 
+![HiLetgo MPU9250/6500](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/MPU9250.PNG?raw=true)
+
 ### Actuator Selection
 
-[MG90S Micro](https://www.amazon.com/gp/product/B07F7VJQL5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) servo motors were selected to actuate the gimbals. Servo motors were selected because of the positional feedback built into them, allowing precise control over the direction of their end effectors.
+[MG90S micro servo motors](https://www.amazon.com/gp/product/B07F7VJQL5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) were selected to actuate the gimbals. Servo motors were selected because of the positional feedback built into them, allowing precise control over the direction of their end effectors.
+
+![MG90S micro servo motors](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/MG90S%20Micro%20Servo.PNG?raw=true)
 
 ### Microcontroller Selection
 
-An Arduino Nano was used as the microcontroller for this project as it has i2c capabilities for communicating with the accelerometer and requisite PWM pins for controlling the servo motors.
+An [Arduino Nano](https://www.amazon.com/gp/product/B0713XK923/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1) was used as the microcontroller for this project as it has i2c capabilities for communicating with the accelerometer and requisite PWM pins for controlling the servo motors.
+
+![Arduino Nano](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/Arduino%20Nano.PNG?raw=true)
 
 ## CAD Design
 
