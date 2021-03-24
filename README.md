@@ -52,3 +52,11 @@ The gimbal assembly consists of a wheel in the center capable of rotating 360° 
 The Arduino Nano and the MPU9250 accelerometer are connected to the base supporting the gimbal assembly.
 
 ![Gimbal Assembly](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/Gimbal%20Assembly.PNG?raw=true)
+
+## Technical Challenges
+
+### Accelerometer/Magnetometer Calibration
+
+### Servo Calibration
+
+## Potential Improvements
