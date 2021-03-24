@@ -43,8 +43,10 @@ An [Arduino Nano](https://www.amazon.com/gp/product/B0713XK923/ref=ppx_yo_dt_b_s
 
 ![Arduino Nano](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/Arduino%20Nano.PNG?raw=true)
 
-## CAD Design
+## CAD Model
 
 The gimbal assembly consists of a wheel in the center capable of rotating 360° to turn to a given yaw angle. The wheel is enclosed in a ring capable of rotating 180° to turn to a given pitch angle. Finally, this ring is enclosed in another ring capable of rotating 360° to turn to a given roll angle. The yaw wheel and roll ring are driven by a gear connected to a servo with a 1:2 gear ratio in order to achieve the full 360° range of motion, since the serrvos themselves can only achieve a 180° range of motion.
 
-The Arduino Nano and the MPU9250 accelerometer are connected to the base supporting the gimbal assembly. 
+The Arduino Nano and the MPU9250 accelerometer are connected to the base supporting the gimbal assembly.
+
+![Gimbal Assembly](https://github.com/BrandonBNguyen/Three-Axis-Gimbal-Stabilizer/blob/main/Images/Gimbal%20Assembly.PNG?raw=true)
