@@ -71,4 +71,8 @@ Finding the scales and offsets required to be applied to the raw values read fro
 
 ### Servo Calibration
 
+Although the servo motors were marketed as having a 180° range of motion, that was not the case. In reality, the servos had about 165°~170° range of motion. Additionally, the roll and yaw rings have a 1:2 gear ratio from the output of the servo. Therefore, a scaling factor from the difference in servo command signal to the difference in actual rotation for each ring had to be found. In addition, an offset had to be found for each servo to zero the platform, which was done by leveling the base and varying the signal sent to each servo until the central platform was level. The `CalibratedServo` class was created to incorporate the scales and offsets via a linear mapping for each servo to allow them to rotate the correct amount from the zero position based on pitch, roll, and yaw angles calculated from the MPU output.
+
 ## Potential Improvements
+
+The performance of this three-axis gimbal stabilizer can be improved by incorporating a feedback loop. This would require a second MPU to be placed on the central platform, allowing the error between the orientation of the platform and the level orientation to be measured. This error would be used to further correct the orientation, allowing better tracking.
