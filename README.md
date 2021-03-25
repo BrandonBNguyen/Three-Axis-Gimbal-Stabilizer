@@ -55,7 +55,19 @@ The Arduino Nano and the MPU9250 accelerometer are connected to the base support
 
 ## Technical Challenges
 
-### Accelerometer/Magnetometer Calibration
+### MPU9250/6500 Calibration
+
+#### Accelerometer Calibration
+
+Initial testing with the accelerometer yielded unexpected results as along each axis, I was getting values that were too low or too high compared to gravitational acceleration. For example, pointing the +x axis down would yield a value around 11.4 meters per second squared whereas pointing the -x axis would yield a value around -8.2 meters per second squared. Recognizing that the difference between these two values was around double gravitational acceleration, I knew that there was an accelerational offset that had to be incorporated to get the true acceleration along that axis. All axes showed the same behaviour so I had to find the offset along each axis. To find this offset, I wrote `CalibrationCode.ino`, which would average the acceleration value along all axes for 1000 trials. Each axis was aligned with the horizon before running this code to find and record the offset for each axis.
+
+To incorporate these offsets, I wrote a class called `CalibratedMPU` which would be a subclass of `Mpu9250`, used to retrieve measurements from the accelerometer. The function, `get_readings()`, would call the parent functions `accel_x_mps2()`, `accel_y_mps2()`, and `accel_z_mps2()`, add the offsets found to the value returned by those functions, and use those as the true readings for acceleration along those particular axes. `get_readings()` then uses these values to calculate and return the pitch and roll angle.
+
+#### Magnetometer Calibration
+
+Magnetometer calibration involved accounting for hard iron distortion, that is distortion caused by magnetic material mounted nearby to the accelerometer, and soft iron distortion, which is caused by nearby non-magnetic materials that cause distortions to magnetic fields passing through them. Scale biases are implemented to account for both these type of distortions following the pseudocode provided by Mika Tuupola in [this article](https://appelsiini.net/2018/calibrate-magnetometer/). 
+
+Finding the scales and offsets required to be applied to the raw values read from the magnetometer to get accurate readings, these corrections were implemented in the `get_readings()` function, returning corrected magnetic field readings along each axis. These, along with the calculated pitch and roll angles, are used to calculate and return the heading angle.
 
 ### Servo Calibration
 
