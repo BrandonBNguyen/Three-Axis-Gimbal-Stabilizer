@@ -65,7 +65,7 @@ To incorporate these offsets, I wrote a class called `CalibratedMPU` which would
 
 #### Magnetometer Calibration
 
-Magnetometer calibration involved accounting for hard iron distortion, that is distortion caused by magnetic material mounted nearby to the accelerometer, and soft iron distortion, which is caused by nearby non-magnetic materials that cause distortions to magnetic fields passing through them. Scale biases are implemented to account for both these type of distortions following the pseudocode provided by Mika Tuupola in [this article](https://appelsiini.net/2018/calibrate-magnetometer/). 
+Magnetometer calibration involved accounting for hard iron distortion, that is distortion caused by magnetic material mounted nearby to the accelerometer, and soft iron distortion, which is caused by nearby non-magnetic materials that cause distortions to magnetic fields passing through them. Scale biases are implemented to account for both these type of distortions. Following the pseudocode provided by Mika Tuupola in [this article](https://appelsiini.net/2018/calibrate-magnetometer/), this algorithm was implemented in `MagneticCalibrationCode.ino` to find the scales and offsets. 
 
 Finding the scales and offsets required to be applied to the raw values read from the magnetometer to get accurate readings, these corrections were implemented in the `get_readings()` function, returning corrected magnetic field readings along each axis. These, along with the calculated pitch and roll angles, are used to calculate and return the heading angle.
 
